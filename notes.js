@@ -5,10 +5,5 @@ module.exports.addNote = () => {
     return 'New note';
 }
 
-module.exports.add = (a, b) => { // our two arguments our function is taking are a and b
-    return(a + b);
-}
 
-// create a new function called add
-// it will take two arguments, a and b
-// it will add them together and return the result
+

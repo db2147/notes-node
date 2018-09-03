@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/db2147/notes-node#readme",
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "nodemon": "^1.18.4",
+    "yargs": "^4.7.1"
   }
 }
