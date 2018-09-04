@@ -1,7 +1,27 @@
 console.log('Starting notes.js');
 
-var addNote = (title, body) => { // function addNote adds a note; passing in title and body as the arguments
-    console.log('Adding note', title, body); // console logging will happen when app.js is run and will print to the screen the text and title/body
+const fs = require('fs');
+
+var addNote = (title, body) => { // our function to add notes
+    var notes = [];             // our empty array variable
+    var note = {                
+        title,
+        body
+    };
+
+    try {
+        var notesString = fs.readFileSync('notes-data.json'); // creating a variable to read our json file
+        notes = JSON.parse(notesString);
+    } catch (e) {
+
+    }
+
+    var duplicateNotes = notes.filter((note) => note.title === title ); // condensed our es6 function to one line; title automatically returned as function result
+
+    if (duplicateNotes.length === 0) { // if note length equals 0, it will push the new note; if not, it will not add the duplicate;
+        notes.push(note);
+        fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+    }
 };
 
 var getAll = () => { // function will get all notes; no arguments passed into it; will print text when app.js is run
