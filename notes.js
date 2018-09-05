@@ -2,7 +2,7 @@ console.log('Starting notes.js');
 
 const fs = require('fs');
 
-var fetchNotes = () => {
+var fetchNotes = () => { // contains logic we use which can now be re used instead of re created each time
     try { // fetching of notes
         var notesString = fs.readFileSync('notes-data.json'); // creating a variable to read our json file
         return JSON.parse(notesString);
@@ -16,8 +16,8 @@ var saveNotes = (notes) => {
 };
 
 var addNote = (title, body) => { // our function to add notes
-    var notes = fetchNotes();             // our empty array variable
-    var note = {                
+    var notes = fetchNotes();    // created a variable inside our function to fetchNotes         
+    var note = {                 // created a second variable inside our function with key value pairs
         title,
         body
     };
@@ -39,7 +39,11 @@ var getNote = (title) => { // function gets a single note; passed in the title a
 };
 
 var removeNote = (title) => { // function that passes in the title of the note I want to remove
-    console.log('Removing note', title); // when app.js is run the function will print the text and the title to be removed to the screen
+    var notes = fetchNotes();
+    var filteredNotes = notes.filter((note) => note.title !== title);
+    saveNotes(filteredNotes);
+
+    return notes.length !== filteredNotes.length;
 };
 
 
