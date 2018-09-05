@@ -12,7 +12,15 @@ console.log('Command: ', command);
 console.log('Yargs', argv);
 
 if (command === 'add') {                // add command passes in the title and body of the note when run
-    notes.addNote(argv.title, argv.body);   
+    var note = notes.addNote(argv.title, argv.body); 
+    if (note) {
+        console.log('Note created');
+        console.log('--');
+        console.log(`Title: ${note.title}`);
+        console.log(`Body: ${note.body}`);
+    } else {   
+       console.log('Note title taken');
+    }
 } else if (command === 'list') {        // lists all notes with nothing passed in as an argument
     notes.getAll();
 } else if (command === 'read') {        // reads a specific note and prints the title in the console
