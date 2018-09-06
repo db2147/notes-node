@@ -35,13 +35,15 @@ var getAll = () => { // function will get all notes; no arguments passed into it
 };
 
 var getNote = (title) => { // function gets a single note; passed in the title as an argument
-    console.log('Getting note', title); // when app.js is run it will print the text and the title to the screen
+    var notes = fetchNotes();
+    var filteredNotes = notes.filter((note) => note.title === title); // filtering the notes whose title is the same as our title
+    return filteredNotes.shift(); // our return statement returns the filtered note to us
 };
 
 var removeNote = (title) => { // function that passes in the title of the note I want to remove
-    var notes = fetchNotes();
-    var filteredNotes = notes.filter((note) => note.title !== title);
-    saveNotes(filteredNotes);
+    var notes = fetchNotes(); // fetch notes 
+    var filteredNotes = notes.filter((note) => note.title !== title); // variable to filter notes with title not equal to the title we type
+    saveNotes(filteredNotes); // save the newly filteredNotes (writeFileSync writes to the notes-data.json and sends json to the file w json.stringify)
 
     return notes.length !== filteredNotes.length;
 };

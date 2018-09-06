@@ -24,7 +24,9 @@ if (command === 'add') {                // add command passes in the title and b
 } else if (command === 'list') {        // lists all notes with nothing passed in as an argument
     notes.getAll();
 } else if (command === 'read') {        // fetches an individual note
-    notes.getNote(argv.title);
+    var noteRead = notes.getNote(argv.title);
+    var message2 = noteRead ? 'Note read' : 'Note not found';
+    console.log(message2);
 } else if (command === 'remove') {      // passing in the variable argv as an argument in removeNote(argv holds yargs.argv)
     var noteRemoved = notes.removeNote(argv.title);
     var message = noteRemoved ? 'Note was removed' : 'Note not found'; // used the ternary operator to check if a note was removed
