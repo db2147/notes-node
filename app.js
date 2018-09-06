@@ -15,18 +15,20 @@ if (command === 'add') {                // add command passes in the title and b
     var note = notes.addNote(argv.title, argv.body); 
     if (note) {
         console.log('Note created');
-        console.log('--');
-        console.log(`Title: ${note.title}`);
-        console.log(`Body: ${note.body}`);
+        notes.logNote(note); // our utility function that console logs the title and body to the console
     } else {   
        console.log('Note title taken');
     }
 } else if (command === 'list') {        // lists all notes with nothing passed in as an argument
     notes.getAll();
 } else if (command === 'read') {        // fetches an individual note
-    var noteRead = notes.getNote(argv.title);
-    var message2 = noteRead ? 'Note read' : 'Note not found';
-    console.log(message2);
+    var note = notes.getNote(argv.title);
+    if (note) {
+        console.log('Note found');
+        notes.logNote(note);  // utility function that console logs the title and body info to the console
+    } else {
+        console.log('Note not found');
+    }
 } else if (command === 'remove') {      // passing in the variable argv as an argument in removeNote(argv holds yargs.argv)
     var noteRemoved = notes.removeNote(argv.title);
     var message = noteRemoved ? 'Note was removed' : 'Note not found'; // used the ternary operator to check if a note was removed

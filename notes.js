@@ -48,11 +48,18 @@ var removeNote = (title) => { // function that passes in the title of the note I
     return notes.length !== filteredNotes.length;
 };
 
+var logNote = (note) => { // creating a function to refactor our code based on the the DRY principal: dont repeat yourself
+    console.log('--');
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+};
+
 
 module.exports = { // exporting our key/value pairs which in es6 can show up as just the first part if they are the same
     addNote,
     getAll,
     getNote,
-    removeNote
+    removeNote,
+    logNote
 };
 
