@@ -1,5 +1,3 @@
-console.log('Starting notes.js');
-
 const fs = require('fs');
 
 var fetchNotes = () => { // contains logic we use which can now be re used instead of re created each time
@@ -30,8 +28,8 @@ var addNote = (title, body) => { // our function to add notes
     }
 };
 
-var getAll = () => { // function will get all notes; no arguments passed into it; will print text when app.js is run
-    console.log('Getting all notes');
+var getAll = () => { // function will get all notes; it will return an array of objects
+    return fetchNotes();
 };
 
 var getNote = (title) => { // function gets a single note; passed in the title as an argument

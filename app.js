@@ -1,5 +1,3 @@
-console.log('Starting app.js'); // after we type node app.js to start the application it logs 'Starting app.' in the console
-
 const fs = require('fs');       // filesystem module which is built into node
 const _  = require('lodash');   // npm package we install
 const yargs = require('yargs'); // helps with parsing command line arguments
@@ -8,9 +6,7 @@ const notes = require('./notes.js'); // creating a const which requires a filepa
 
 const argv = yargs.argv;        // creating a const and setting it equal to yargs.argv (like the yargs is parsing the argv)
 var command = argv._[0];        // variable set equal to argv which equals yargs.argv; connecting to lodash npm package and passing in the first argument
-console.log('Command: ', command);
-console.log('Yargs', argv);
-
+ 
 if (command === 'add') {                // add command passes in the title and body of the note when run
     var note = notes.addNote(argv.title, argv.body); 
     if (note) {
@@ -20,7 +16,9 @@ if (command === 'add') {                // add command passes in the title and b
        console.log('Note title taken');
     }
 } else if (command === 'list') {        // lists all notes with nothing passed in as an argument
-    notes.getAll();
+    var allNotes = notes.getAll();
+    console.log(`Printing ${allNotes.length} note(s).`);
+    allNotes.forEach((note) => notes.logNote(note)); // calling notes.logNote once for each item in the array
 } else if (command === 'read') {        // fetches an individual note
     var note = notes.getNote(argv.title);
     if (note) {
