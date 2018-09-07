@@ -49,6 +49,7 @@ var removeNote = (title) => { // function that passes in the title of the note I
 };
 
 var logNote = (note) => { // creating a function to refactor our code based on the the DRY principal: dont repeat yourself
+    debugger;
     console.log('--');
     console.log(`Title: ${note.title}`);
     console.log(`Body: ${note.body}`);
