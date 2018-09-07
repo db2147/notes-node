@@ -4,7 +4,16 @@ const yargs = require('yargs'); // helps with parsing command line arguments
 
 const notes = require('./notes.js'); // creating a const which requires a filepath from notes.js
 
-const argv = yargs.argv;        // creating a const and setting it equal to yargs.argv (like the yargs is parsing the argv)
+const argv = yargs
+    .command('add', 'Add a new note', {
+        title: {
+            describe: 'Title of note',
+            demand: true,
+            alias: 't'  // in console we can type in -t as an alias for the full --title
+        }
+    })
+    .help()
+    .argv;        // creating a const and setting it equal to yargs.argv (like the yargs is parsing the argv)
 var command = argv._[0];        // variable set equal to argv which equals yargs.argv; connecting to lodash npm package and passing in the first argument
  
 if (command === 'add') {                // add command passes in the title and body of the note when run
