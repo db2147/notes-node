@@ -1,16 +1,30 @@
 const fs = require('fs');       // filesystem module which is built into node
 const _  = require('lodash');   // npm package we install
 const yargs = require('yargs'); // helps with parsing command line arguments
+var titleOptions = {            // creating a const for reusable code displaying title options we will pass in inside our commands
+    describe: 'Title of note',
+    demand: true,
+    alias: 't'
+};
+var bodyOptions = {             // creating a const for reusable code displaying body options we will pass in inside our commands
+    describe: 'Body of note',
+    demand: true,
+    alias: 'b'
+};
 
 const notes = require('./notes.js'); // creating a const which requires a filepath from notes.js
 
 const argv = yargs
-    .command('add', 'Add a new note', {
-        title: {
-            describe: 'Title of note',
-            demand: true,
-            alias: 't'  // in console we can type in -t as an alias for the full --title
-        }
+    .command('add', 'Add a new note', { // adding our .command functionality for the 'add' command
+        title: titleOptions,
+        body: bodyOptions
+    })
+    .command('list', 'List all notes')
+    .command('read', 'Read a note', {
+        title: titleOptions
+    })
+    .command('remove', 'Remove a note', {
+        title: titleOptions
     })
     .help()
     .argv;        // creating a const and setting it equal to yargs.argv (like the yargs is parsing the argv)
